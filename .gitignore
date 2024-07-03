@@ -2,3 +2,4 @@ config.txt
 .venv/
 dist
 build
+/.idea/workspace.xml
