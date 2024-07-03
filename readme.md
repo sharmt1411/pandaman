@@ -17,7 +17,11 @@
 
 
 ### 展示图片
+
+直播画面
+![image](display/演示.gif)
 ![image](display/示例1.png)
 ![image](display/示例2.png)
 ![image](display/软件界面.png)
+
 
