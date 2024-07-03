@@ -14,3 +14,9 @@
 整体使用faster—whisper 实现音频转文字
 使用deepseek 进行角色模拟
 
+
+### 展示图片
+![image](display/示例1.png)
+![image](display/示例2.png)
+![image](display/软件界面.png)
+
