@@ -5,3 +5,8 @@ build
 /.idea/workspace.xml
 ./idea
 
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/pandaman.iml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml
