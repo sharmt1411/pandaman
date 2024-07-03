@@ -3,3 +3,5 @@ config.txt
 dist
 build
 /.idea/workspace.xml
+./idea
+
