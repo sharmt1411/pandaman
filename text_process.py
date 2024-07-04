@@ -84,7 +84,7 @@ def text_process(callback=None, phrase_timeout=5) :
                     circle_count = 0
                     callback(None, None)  # 调用回调函数，切换图片
                 else:
-                    sleep(0.1)
+                    sleep(sleep_time)
                     circle_count += 1  # 计数
 
 
