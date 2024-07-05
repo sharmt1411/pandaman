@@ -27,8 +27,8 @@ class MainApp(tk.Tk) :
         self.thread_audio = None
         self.emotions, self.image_files = self.get_emotions_and_paths()
 
-        self.title("Tinker App")
-        self.geometry("800x700+50+20")
+        self.title("pandaman熊猫头-5s无操作后自动隐藏边框")
+        self.geometry("700x700+50+20")
         self.configure(bg='green')
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
         # self.attributes("-alpha", 0.1)

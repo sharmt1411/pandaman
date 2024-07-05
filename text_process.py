@@ -69,13 +69,17 @@ def text_process(callback=None, phrase_timeout=5) :
                     response = ApiLLM.get_response_deepseek(raw_text_data, prompts)
                     print("转换结束时间", datetime.now(),"\n", response)
                     if callback :
-                        parts = response.split('][')
+                        if response.startswith("["):
+                            parts = response.split('][')
 
-                        # 去除方括号
-                        emotion = parts[0][1 :]  # 去掉开头的 '['
-                        text = parts[1][:-1]  # 去掉结尾的 ']'
-                        circle_count = 0  # 重置连续睡眠周期计数
-                        callback(emotion, text)
+                            # 去除方括号
+                            emotion = parts[0][1 :]  # 去掉开头的 '['
+                            text = parts[1][:-1]  # 去掉结尾的 ']'
+                            circle_count = 0  # 重置连续睡眠周期计数
+                            if emotion and text:
+                                callback(emotion, text)
+                        else:
+                            pass
 
             else:
                 # 无数据时间隔一段时间再循环，防止CPU占用过高。检测频率越高，越早触发循环
