@@ -76,8 +76,8 @@ class MainApp(tk.Tk) :
 
         # 创建一个Checkbutton复选框按钮，用于切换置顶状态
         self.topmost_var = tk.BooleanVar()
-        # 默认不置顶
-        self.topmost_var.set(False)
+        # 默认置顶，与窗口初始化属性一致
+        self.topmost_var.set(True)
         self.topmost_checkbox = tk.Checkbutton(self.settings_frame, bg='white', text="始终置顶",
                                                variable=self.topmost_var,
                                                command=self.toggle_topmost,width=8, height=5)
@@ -85,11 +85,11 @@ class MainApp(tk.Tk) :
 
         # self.topmost_checkbox.config(width=60px, height=30px)
         self.topmost_checkbox.grid(row=0, column=3, padx=0, pady=0, rowspan=4, columnspan=2)
-
+        self.bind("<Unmap>", self.minimize_window)
 
 
     def show_border(self, event) :
-
+        print("show_border")
         # x = self.winfo_x()
         # y = self.winfo_y()
         # print("show_border之前", x, y)
@@ -113,7 +113,7 @@ class MainApp(tk.Tk) :
         if self.hide_id is not None :
             self.after_cancel(self.hide_id)
         self.hide_id = self.after(8000, lambda : self.hide_border(titlebar_height))
-
+        print("8s后自动隐藏边框")
     def hide_border(self, titlebar_height) :
         # 获取当前窗口的位置和大小
         x = self.winfo_x()
@@ -124,6 +124,7 @@ class MainApp(tk.Tk) :
         # y = y + titlebar_height
         # 设置窗口的overrideredirect属性
         self.overrideredirect(True)
+        print("hide_border")
 
         # 重新设置窗口的位置和大小
         self.geometry(f"{width}x{height}+{x}+{y}")
@@ -341,6 +342,22 @@ class MainApp(tk.Tk) :
     def on_closing(self):
         self.save_settings()
         self.destroy()
+
+    def minimize_window(self, event) :
+        print("隐藏或者取消边框")
+        if not self.topmost_var.get() :
+            self.overrideredirect(False)
+            print("最小化或者切换到后台，取消隐藏边框")
+            if self.hide_id is not None :
+                self.after_cancel(self.hide_id)
+                print("hide_id canceled")
+        # if self.state() == "iconic" :
+        #     self.overrideredirect(False)
+        #     print("on_minimize")
+        #     if self.hide_id is not None :
+        #         self.after_cancel(self.hide_id)
+        #         print("hide_id canceled")
+            # self.iconify()
 
 
 
